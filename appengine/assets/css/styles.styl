@@ -1,5 +1,142 @@
 @import "nib"
 @import "bootstrap.min.css"
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+@import "https://fonts.googleapis.com/css?family=Raleway:400,700,400italic,700italic,900"
+
+$orange = #FF6D10
+
+html, body
+	width 100%
+	height 100%
 
 body
-	background initial
+	background-image linear-gradient(top, #d7dadc 0%, #fff 20%, #fff 100%)
+	background-size cover
+	background-repeat no-repeat
+	font-family Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif
+	font-size 16px
+	line-height 1.6
+
+*
+	box-sizing border-box
+
+#topbar
+	display block
+	background #fff
+	margin-bottom 30px
+
+	@media (min-width 480px)
+		margin-top 15px
+
+	@media (min-width 768px)
+		margin-top 30px
+
+	@media (min-width 992px)
+		margin-top 30px
+
+	@media (min-width 1200px)
+		margin-top 45px
+
+	a
+		text-decoration none
+
+	.nav li
+		padding 0 16px
+		margin 0
+		height 70px
+		line-height 70px
+
+		a
+			padding 0
+			margin 0
+			color #333
+			font-family Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif
+			font-weight bold
+
+			&:focus, &:hover
+				background transparent
+				color $orange
+
+#logo
+	color #333
+	font-family Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif
+	font-weight 900
+	font-size 22px
+	text-transform uppercase
+	height 70px
+	padding 0 15px
+	line-height 70px
+
+.button, button
+	&.btn.btn-primary
+		background-color $orange
+		border-color $orange
+
+		&:hover, &:focus
+			background-color darken($orange, 10%)
+			border-color darken($orange, 20%)
+
+#topblock
+	display block
+
+	.page-header
+		h2
+			font-weight bold
+
+		small
+			padding-left 10px
+
+#searchform
+	display block
+	margin 30px 0
+
+#results-table
+	.panel-body
+		padding 0
+
+.table
+	margin-bottom 2px
+
+	& > tbody, & > tfoot, & > thead
+		& > tr > td, & > tr > th
+			padding 8px 14px
+
+	tbody
+		font-size 15px
+
+.platform-sprite
+	image "/assets/build/img/sprite-platforms.png" 60px 20px
+	display inline-block
+	width 20px
+	height 20px
+
+	&.platform-sprite-pc
+		background-position 40px 0
+
+	&.platform-sprite-xbox
+		background-position 0 0
+
+	&.platform-sprite-ps4
+		background-position 20px 0
+
+.tdw
+	white-space nowrap
+
+.tdr
+	width 100px
+
+footer
+	margin-top 30px
+	padding 30px 0
+	background-color #374652
+	color #d2d2d2
+
+	h3
+		font-weight bold
+		font-size 18px
+		text-transform uppercase
+		padding-bottom 15px
+
+	p
+		font-size 14px
+		line-height 23px

@@ -1,1 +1,43 @@
-Hola mundo desde Home
+<section id="topblock">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="page-header">
+					<h2>Buscando Grupo <small>Encuentra a otros agentes y arma equipo con ellos</small></h2>
+				</div>
+				<p>
+					<strong>Bienvenido, Agente:</strong> En este sitio podrás encontrar a otros agentes que quieran jugar "The Divivision" contigo. Con este sistema no sólo podrás buscar por plataforma, sino que también por interés —ya sea que quieras jugar en la Zona Oscura, subiendo niveles en misiones "Desafiantes" o incluso farmeando materiales de construcción, créditos Fénix u otros.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="searchblock">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default" id="searchform">
+					<div class="panel-body">
+						{{ template "searchform" . }}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default" id="results-table">
+					<!-- <div class="panel-heading">
+						<h3 class="panel-title">Agentes Encontrados</h3>
+					</div> -->
+					<div class="panel-body">
+						<div class="table-responsive">
+							{{ template "tableresults" . }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
