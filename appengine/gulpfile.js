@@ -31,16 +31,15 @@ gulp.task('js', ['cleanjs'], function() {
 });
 
 gulp.task('css', ['cleancss'], function() {
-	var cssStream = gulp.src('assets/css/*.css')
-		.pipe(cleanCSS())
-		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'));
-
-	return es.merge(cssStream, gulp.src('assets/css/*.styl'))
+	return gulp.src('assets/css/*.styl')
 		.pipe(stylus({
+			'include css': true,
 			use: nib(),
 			import: ['nib'],
 			compress: true
 		}))
+		.pipe(cleanCSS())
+		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
 		.pipe(concat('build.min.css'))
 		.pipe(gulp.dest('assets/build/css'));
 });
