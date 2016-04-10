@@ -67,11 +67,114 @@
 	</select>
 </div>
 <div class="col-sm-6 col-md-4 form-group">
-	<input type="text" name="search" class="form-control" placeholder="Busca en la descripción del Agente...">
+	<input type="text" id="select-search" name="search" class="form-control" placeholder="Busca en la descripción del Agente...">
 </div>
 <div class="col-sm-offset-1 col-sm-5 col-md-offset-2 col-md-4 form-group">
-	<button type="button" class="form-control btn btn-primary"><i class="fa fa-search"></i> Buscar Agentes</button>
+	<button type="button" id="search-agents" class="form-control btn btn-primary">
+		<i class="fa fa-search"></i> Buscar Agentes
+	</button>
 </div>
 <div class="col-sm-offset-0 col-sm-5 col-md-offset-0 col-md-4 form-group">
-	<button type="button" class="form-control btn btn-success"><i class="fa fa-user-plus"></i> Agregarme al Listado</button>
+	<button type="button" class="form-control btn btn-success" data-toggle="modal" data-target="#modal-add-agent">
+		<i class="fa fa-user-plus"></i> Agregarme al Listado
+	</button>
+</div>
+
+<div class="modal fade" id="modal-add-agent" tabindex="-1" role="dialog" aria-labelledby="add-modal-title">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="add-modal-title">Agrega un nuevo agente</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group" id="add-alert-placement"></div>
+				<div class="form-group">
+					<label for="aa-username">Nombre de Usuario</label>
+					<input type="text" class="form-control" id="aa-username" placeholder="Tu nombre...">
+				</div>
+				<div class="form-group">
+					<label for="aa-platform">Plataforma en la que juegas</label>
+					<select class="form-control" name="platform" id="aa-platform">
+						<option disabled selected="">Selecciona plataforma...</option>
+						<option value="pc">PC (Uplay / Steam)</option>
+						<option value="ps4">PlayStation 4</option>
+						<option value="xbone">Xbox One</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="aa-activity">Actividad que quieres realizar</label>
+					<select class="form-control" name="activity" id="aa-activity">
+						<option disabled selected="">Selecciona actividad...</option>
+						<optgroup label="Misiones Diarias">
+							<option value="daily-challenge">En modo desafiante</option>
+							<option value="daily-hard">En modo difícil</option>
+						</optgroup>
+						<optgroup label="Zona Oscura">
+							<option value="dz-farming">Farmeo / Leveling</option>
+							<option value="dz-rogue">Modo Renegado</option>
+						</optgroup>
+						<optgroup label="Modo Historia">
+							<option value="story-normal">Niveles dificultad Normal</option>
+							<option value="story-hard">Niveles dificultad Difícil</option>
+							<option value="story-challenge">Niveles dificultad Desafiante</option>
+						</optgroup>
+						<optgroup label="Modo Libre">
+							<option value="fr-farming">Farmeo / Leveling</option>
+							<option value="fr-free">Modo Libre</option>
+							<option value="fr-sidemissions">Misiones Secundarias</option>
+						</optgroup>
+						<optgroup label="Otros">
+							<option value="trading">Intercambio de Objetos</option>
+						</optgroup>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="aa-microphone">¿Tienes un micrófono?</label>
+					<select class="form-control" name="microphone" id="aa-microphone">
+						<option disabled selected="">Selecciona una opción...</option>
+						<option value="mic-on">Si tengo micrófono</option>
+						<option value="mic-off">No tengo micrófono</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="aa-lookingfor">¿Qué buscas en otros agentes?</label>
+					<select class="form-control" name="lookingfor" id="aa-lookingfor">
+						<option disabled selected="">Selecciona una opción...</option>
+						<option value="lfg">Busco un grupo al cual unirme</option>
+						<option value="lfm">Busco hacer amistad para jugar más de una vez</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="aa-lookingfor">Tus niveles de juego y Zona Oscura</label>
+					<div class="row">
+						<div class="col-xs-6">
+							<select class="form-control" name="level" id="aa-level">
+								<option disabled selected="">Modo Historia</option>
+								<option value="first-tier">Nivel 1 a 10</option>
+								<option value="second-tier">Nivel 11 a 20</option>
+								<option value="third-tier">Nivel 21 a 30</option>
+							</select>
+						</div>
+						<div class="col-xs-6">
+							<select class="form-control" name="dzlevel" id="aa-dzlevel">
+								<option disabled selected="">Zona Oscura</option>
+								<option value="first-tier">Nivel menor a 30</option>
+								<option value="second-tier">Nivel 30 a 50</option>
+								<option value="third-tier">Nivel mayor a 50</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="aa-description">Información adicional</label>
+					<input type="text" class="form-control" id="aa-description" placeholder="DPS, salud, tipo de build o info adicional?">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+				<button type="button" id="save-agent" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar agente</button>
+			</div>
+		</div>
+	</div>
 </div>
