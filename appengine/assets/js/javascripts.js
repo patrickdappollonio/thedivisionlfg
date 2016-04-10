@@ -90,61 +90,60 @@ $(document).ready(function() {
 
 	// When saving an agent
 	saveAgentBtn.click(function(e) {
+		// Create a placeholder func so DRY
+		var fnSaveAgentError = function(errormsg) {
+			fnShowError(addAlertPlacement, errormsg);
+			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+		};
+
+		// Disable the button and animate it
 		fnToggleButton(saveAgentBtn, saveAgentBtnOff)
 
 		// Check if the username is not empty
 		if ($.trim(addUsername.val()) === "") {
-			fnShowError(addAlertPlacement, eUserIncorrect);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eUserIncorrect);
 			return;
 		}
 
 		// Check if the platform is selected
 		if (addPlatform.val() == null) {
-			fnShowError(addAlertPlacement, ePlatformIncorrect);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(ePlatformIncorrect);
 			return
 		}
 
 		// Check if the activity is selected
 		if (addActivity.val() == null) {
-			fnShowError(addAlertPlacement, eActivityIncorrect);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eActivityIncorrect);
 			return
 		}
 
 		// Check if the user selected microphone or not
 		if (addMicrophone.val() == null) {
-			fnShowError(addAlertPlacement, eHasMicrophone);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eHasMicrophone);
 			return
 		}
 
 		// Check if the looking for is selected
 		if (addLookingFor.val() == null) {
-			fnShowError(addAlertPlacement, eWhatAreYouLooking);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eWhatAreYouLooking);
 			return
 		}
 
 		// Check if the normal level is selected
 		if (addLevel.val() == null) {
-			fnShowError(addAlertPlacement, eLevelNormal);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eLevelNormal);
 			return
 		}
 
 		// Check if the DZ level is selected
 		if (addDZLevel.val() == null) {
-			fnShowError(addAlertPlacement, eLevelDarkZone);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eLevelDarkZone);
 			return
 		}
 
 		// Check if the description is not empty
 		if ($.trim(addDescription.val()) === "") {
-			fnShowError(addAlertPlacement, eNoAdditionalInfo);
-			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+			fnSaveAgentError(eNoAdditionalInfo);
 			return
 		}
 
