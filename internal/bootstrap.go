@@ -20,4 +20,6 @@ func init() {
 	)
 
 	Router.Get("/", handlers.GetHome)
+	Router.Post("/addnew", handlers.PostAddNew)
+	Router.Post("/search", handlers.PostSearch)
 }

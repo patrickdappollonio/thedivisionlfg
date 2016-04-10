@@ -22,11 +22,13 @@ $(document).ready(function() {
 
 	// Buttons
 	var saveAgentBtn = $('#save-agent'),
-		searchAgentsBtn = $('search-agents');
+		searchAgentsBtn = $('#search-agents');
 
 	// Button contents
 	var saveAgentBtnOn = '<i class="fa fa-plus-circle"></i> Agregar agente',
-		saveAgentBtnOff = '<i class="fa fa-spinner fa-spin"></i> Agregando, espera...'
+		saveAgentBtnOff = '<i class="fa fa-spinner fa-spin"></i> Agregando, espera...',
+		searchAgentsBtnOn = '<i class="fa fa-search"></i> Buscar Agentes',
+		searchAgentsBtnOff = '<i class="fa fa-spinner fa-spin"></i> Buscando, espera...';
 
 	// Places for alerts
 	var addAlertPlacement = $('#add-alert-placement');
@@ -42,14 +44,14 @@ $(document).ready(function() {
 	);
 
 	// Messages
-	var eUserIncorrect = '<strong>Oh no!</strong> El <u>nombre de usuario</u> es incorrecto. Verifícalo y vuelve a intentarlo.',
+	var eUserIncorrect = '<strong>Oh no!</strong> El <u>nombre de usuario</u> es incorrecto o es demasiado corto. Verifícalo y vuelve a intentarlo.',
 		ePlatformIncorrect = '<strong>Oh no!</strong> No has seleccionado <u>una plataforma</u>. Elige una y vuelve a intentarlo.',
 		eActivityIncorrect = '<strong>Oh no!</strong> No has seleccionado <u>una actividad</u>. Elige una y vuelve a intentarlo.',
 		eHasMicrophone = '<strong>Oh no!</strong> No has indicado si <u>tienes o no un micrófono</u>. Elige una opción y vuelve a intentarlo.',
 		eWhatAreYouLooking = '<strong>Oh no!</strong> No has indicado <u>qué buscas en otros agentes</u>. Elige una opción y vuelve a intentarlo.',
 		eLevelNormal = '<strong>Oh no!</strong> No has indicado <u>qué nivel tienes en el modo historia</u>. Elige una opción y vuelve a intentarlo.',
 		eLevelDarkZone = '<strong>Oh no!</strong> No has indicado <u>qué nivel tienes en la Zona Oscura</u>. Elige una opción y vuelve a intentarlo.',
-		eNoAdditionalInfo = '<strong>Oh no!</strong> No has entregado <u>información adicional</u> como tu DPS o tu nivel de Salud. Escribe un detalle y vuelve a intentarlo.';
+		eNoAdditionalInfo = '<strong>Oh no!</strong> No has entregado <u>información adicional</u> o escribiste poca información, como tu DPS o tu nivel de Salud. Escribe un detalle y vuelve a intentarlo.';
 
 	// Show errors functions
 	var fnShowError = function(placement, message) {
@@ -86,8 +88,6 @@ $(document).ready(function() {
 		}
 	};
 
-
-
 	// When saving an agent
 	saveAgentBtn.click(function(e) {
 		// Create a placeholder func so DRY
@@ -100,7 +100,7 @@ $(document).ready(function() {
 		fnToggleButton(saveAgentBtn, saveAgentBtnOff)
 
 		// Check if the username is not empty
-		if ($.trim(addUsername.val()) === "") {
+		if ($.trim(addUsername.val()) === "" || $.trim(addUsername.val()).length < 6) {
 			fnSaveAgentError(eUserIncorrect);
 			return;
 		}
@@ -142,13 +142,24 @@ $(document).ready(function() {
 		}
 
 		// Check if the description is not empty
-		if ($.trim(addDescription.val()) === "") {
+		if ($.trim(addDescription.val()) === "" || $.trim(addDescription.val()).length < 6) {
 			fnSaveAgentError(eNoAdditionalInfo);
 			return
 		}
 
 		setTimeout(function() {
 			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+		}, 5000);
+	});
+
+	// When searching for agents
+	searchAgentsBtn.click(function(e) {
+		// Toggle button state
+		fnToggleButton(searchAgentsBtn, searchAgentsBtnOff);
+
+		setTimeout(function() {
+			// Toggle button state
+			fnToggleButton(searchAgentsBtn, searchAgentsBtnOn);
 		}, 5000);
 	});
 });
