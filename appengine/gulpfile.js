@@ -24,6 +24,7 @@ gulp.task('js', ['cleanjs'], function() {
 	return gulp.src([
 			'assets/js/jquery.min.js',
 			'assets/js/bootstrap.min.js',
+			'assets/js/bootbox.js',
 			'assets/js/javascripts.js',
 		])
 		.pipe(uglify())

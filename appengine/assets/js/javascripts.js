@@ -147,9 +147,55 @@ $(document).ready(function() {
 			return
 		}
 
-		setTimeout(function() {
+		// Create a xhr request
+		var xhr = $.post('/addnew', {
+			username: $.trim(addUsername.val()),
+			platform: addPlatform.val(),
+			activity: addActivity.val(),
+			microphone: addMicrophone.val(),
+			lookingfor: addLookingFor.val(),
+			level: addLevel.val(),
+			dzlevel: addDZLevel.val(),
+			description: addDescription.val()
+		});
+
+		xhr.done(function(data) {
+			console.log(data);
+
+			addUsername.val('');
+			addPlatform.prop('selectedIndex', 0);
+			addActivity.prop('selectedIndex', 0);
+			addMicrophone.prop('selectedIndex', 0);
+			addLookingFor.prop('selectedIndex', 0);
+			addLevel.prop('selectedIndex', 0);
+			addDZLevel.prop('selectedIndex', 0);
+			addDescription.val('');
+
 			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
-		}, 5000);
+			modalAddAgent.modal('toggle');
+
+			var deletionURL = window.location.protocol + "//" + window.location.host + data.deletionid;
+			var message = '<p><strong>Ya estás agregado, ' + data.username + '!</strong> Cuando otros agentes busquen por '
+						+ 'las características que mencionaste, tu nombre aparecerá en el listado. '
+						+ '<strong style="color:red">Si quieres eliminar tu nombre del listado</strong>, '
+						+ 'puedes conservar este link en un lugar seguro. Una vez que quieras eliminarte, '
+						+ 'ábrelo y sigue las instrucciones:<p>'
+						+ '<div class="form-group">'
+						+ '<input readonly type="text" class="form-control" value="' + deletionURL + '">'
+						+ '</div>';
+
+			bootbox.dialog({
+				title: 'Agente agregado! Bienvenido al Listado',
+				message: message,
+				buttons: {
+					success: { label: 'Entendido!', className: 'btn-primary' }
+				}
+			});
+		});
+
+		xhr.fail(function(e) {
+			if (e.responseText != "") fnSaveAgentError('<strong>Oh no!</strong> ' + e.responseText);
+		});
 	});
 
 	// When searching for agents
