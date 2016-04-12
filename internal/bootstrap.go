@@ -22,4 +22,6 @@ func init() {
 	Router.Get("/", handlers.GetHome)
 	Router.Post("/addnew", handlers.PostAddNew)
 	Router.Post("/search", handlers.PostSearch)
+	Router.Get("/r/:deletionid", handlers.RemoveAgent)
+	Router.Post("/r/:deletionid", handlers.PostRemoveAgent)
 }

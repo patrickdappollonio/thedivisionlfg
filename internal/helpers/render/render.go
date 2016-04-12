@@ -33,6 +33,13 @@ var tmplfuncs = []template.FuncMap{
 			}
 			return def
 		},
+		"renderselect": func(max int) template.HTML {
+			var elems []string
+			for i := 1; i <= max; i++ {
+				elems = append(elems, fmt.Sprintf("<option value=\"%v\">%v</option>\n", i, i))
+			}
+			return template.HTML(strings.Join(elems, ""))
+		},
 	},
 }
 
@@ -41,6 +48,7 @@ func init() {
 		Directory:     "views",
 		Layout:        "layout",
 		Extensions:    []string{".tmpl"},
+		Funcs:         tmplfuncs,
 		Charset:       "UTF-8",
 		IsDevelopment: true,
 	})

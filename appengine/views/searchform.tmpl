@@ -39,8 +39,8 @@
 <div class="col-sm-6 col-md-4 form-group">
 	<select class="form-control" name="microphone" id="select-microphone">
 		<option value="all" selected>Que tenga o no Micrófono</option>
-		<option value="0">Que tenga micrófono</option>
-		<option value="1">Que no tenga micrófono</option>
+		<option value="1">Que tenga micrófono</option>
+		<option value="2">Que no tenga micrófono</option>
 	</select>
 </div>
 <div class="col-sm-6 col-md-4 form-group">
@@ -151,17 +151,13 @@
 						<div class="col-xs-6">
 							<select class="form-control" name="level" id="aa-level">
 								<option disabled selected="">Selecciona modo historia...</option>
-								<option value="1">Nivel 1 a 10</option>
-								<option value="2">Nivel 11 a 20</option>
-								<option value="3">Nivel 21 a 30</option>
+								{{ renderselect 30 }}
 							</select>
 						</div>
 						<div class="col-xs-6">
 							<select class="form-control" name="dzlevel" id="aa-dzlevel">
 								<option disabled selected="">Selecciona Zona Oscura...</option>
-								<option value="1">Nivel menor a 30</option>
-								<option value="2">Nivel 30 a 50</option>
-								<option value="3">Nivel mayor a 50</option>
+								{{ renderselect 99 }}
 							</select>
 						</div>
 					</div>

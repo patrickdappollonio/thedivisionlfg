@@ -5,26 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
-	"strings"
 	"time"
 
-	"github.com/SKAhack/go-shortid"
 	"github.com/patrickdappollonio/thedivisionlfg/internal/models/player"
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
 )
-
-func fnClean(r *http.Request, param string) string {
-	return strings.TrimSpace(r.FormValue(param))
-}
-
-func fnNum(r *http.Request, param string) int {
-	n, _ := strconv.Atoi(fnClean(r, param))
-	return n
-}
 
 func PostAddNew(_ context.Context, w http.ResponseWriter, r *http.Request) {
 	// Create a new appengine ctx
@@ -55,13 +43,13 @@ func PostAddNew(_ context.Context, w http.ResponseWriter, r *http.Request) {
 		Activity:     player.Activity(activity),
 		Microphone:   false,
 		LookingFor:   player.LookingFor(lookingfor),
-		StoryLevel:   player.StoryLevel(level),
-		DZLevel:      player.DZLevel(dzlevel),
+		StoryLevel:   level,
+		DZLevel:      dzlevel,
 		Description:  description,
 		Signup:       time.Now(),
 		IPAddress:    r.RemoteAddr,
 		ForwardedFor: r.Header.Get("X-Forwarded-For"),
-		DeletionID:   shortid.Generator().Generate(),
+		DeletionID:   generateShortID(),
 	}
 
 	// Check if the agent has microphone
@@ -103,7 +91,7 @@ func PostAddNew(_ context.Context, w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Print something if everything is okay
-	response := map[string]interface{}{
+	response := KV{
 		"ok":         true,
 		"username":   current.Username,
 		"deletionid": fmt.Sprintf(player.DeletionURLFormat, current.DeletionID),
@@ -121,8 +109,4 @@ func PostAddNew(_ context.Context, w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(w, content.String())
-}
-
-func PostSearch(_ context.Context, w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, world!")
 }

@@ -171,7 +171,9 @@ $(document).ready(function() {
 			addDZLevel.prop('selectedIndex', 0);
 			addDescription.val('');
 
+			addAlertPlacement.empty();
 			fnToggleButton(saveAgentBtn, saveAgentBtnOn);
+
 			modalAddAgent.modal('toggle');
 
 			var deletionURL = window.location.protocol + "//" + window.location.host + data.deletionid;

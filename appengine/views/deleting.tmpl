@@ -1,0 +1,28 @@
+<section id="delete-agent">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="page-header">
+					<h2>Eliminando agente del sistema <small>Puedes volver a agregarlo más tarde</small></h2>
+				</div>
+				<p>Eliminar a un agente del sistema lo eliminará de las listas. Lamentamos que quieras quitar tu personaje del listado, pero lo entendemos si estás recibiendo muchos mensajes o solicitudes de amistad y ya no puedes más con ellas.</p>
+				<p>Recuerda que puedes volverte a agregar sin problema más tarde introduciendo tus datos nuevamente.</p>
+				<p>&nbsp;</p>
+
+				<form method="post" class="form-horizontal" action="/r/{{ .Agent.DeletionID }}">
+					<div class="form-group">
+						<label for="input-username" class="col-sm-5 control-label">Escribe tu nombre de usuario</label>
+						<div class="col-sm-7">
+							<input type="text" name="username" class="form-control" id="input-username" placeholder="Tu nombre de usuario aquí">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-7">
+							<button type="submit" class="btn btn-primary">Eliminar agente</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
